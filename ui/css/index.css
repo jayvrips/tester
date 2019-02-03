@@ -1,0 +1,50 @@
+body {
+  margin: 0;
+  padding: 10px;
+  font-family: sans-serif;
+
+  color: #444444;
+  background-color: #d2be8d;
+}
+
+a {
+  color: #0f1188;
+  font-weight: bolder;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.card {
+  margin: 4px;
+  border-radius: 10px 10px 10px 10px;
+  border: solid 1px #888888;
+
+  width: 500px;
+  min-height: 100px;
+  background-color: #bbbbbb;
+}
+.card-header {
+  border-radius: 10px 10px 0 0;
+  background-color: #869bbb;
+  padding: 5px;
+
+  text-align: center;
+
+  border-bottom: solid 1px #888888;
+}
+.card-body {
+  padding: 5px;
+}
+
+.logo {
+  animation: logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+@keyframes logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+

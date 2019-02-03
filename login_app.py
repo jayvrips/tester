@@ -1,5 +1,5 @@
 
-from flask import Flask, escape, request, redirect, url_for, render_template
+from flask import Flask, escape, request, redirect, url_for, render_template, send_from_directory
 
 from login_logger import LoginFileLogger
 log = LoginFileLogger()
@@ -10,13 +10,15 @@ LoginApp.secret_key = b' \xa9\x16\x17}n\xe3\xad\xae:\x1d\xa5fr\xd3\xa4'
 
 @LoginApp.route("/")
 def index():
-    return render_template('index.html')
+    return send_static('index.html')
 
-################## pages ############################
-@LoginApp.route("/tester")
-def home():
-    return render_template('LoginTemplate.html')
+@LoginApp.route("/page1")
+def send_page1():
+    return send_static('index.html')
 
+@LoginApp.route("/<path:path>")
+def send_static(path):
+    return send_from_directory('ui', path)
 
 ####################### login/logout ##############################
 from flask_login import LoginManager, login_required, login_user, current_user, logout_user
@@ -68,7 +70,7 @@ def login():
                 log.tb()
                 raise
             log.info("User logged in as: {}", current_user.username)
-            return redirect(url_for('index'))
+            return '{"username": "asdf"}', 200 #redirect(url_for('index'))
         #TODO: else indicate login failure in login.html
     return render_template('login.html')
 
